@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!--Bootstrap link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--CSS connection link-->
+    <link rel="stylesheet" href="signup.css">
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png">
+    <!--for scroll animation-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">>
+    <!--for box icons-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <!--for box icons-->
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <!--JS connection links-->
+    <script type="module" src="signup.js"></script>
+
+
+
+    
+       </head>
+
+       <body>
+        
+          <header>
+            <!--Navbar-->
+             <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
+                <h1 class="navbar-brand">CODE SPEAK</h1>
+                <img src="images/sun-256.png" alt="sun" class="light-mode"  id="icon">
+             <div class="navba-list" id="navnav">
+                <ul class="navbar-nav ms-auto">
+                    <li  class="nav-item register-btn">
+                      <a class="nav-link"href="#">
+                      <button class="btn btn-danger" onclick="window.location.href='login.html'">Login</button>
+                    </a>
+                    
+                     </li>
+                   <!--   <li  class="nav-item login-btn"><a class="nav-link"href="contact.html"><button class="btn btn-primary">Log in</button></a></li>  -->
+
+                </ul>
+            </div></div>
+        </nav>
+        </header>
+         <!-- fancy border -->
+<div class="fancy-border1">
+
+</div>
+
+<main>
+  <!--Sign up form-->
+
+ <div class="container2">
+ 
+    <div class="row">
+      <h2 class="signup-heading">Sign Up</h2>
+     
+
+     <div class="login-form">
+       <div class="col col1 btn-line">
+
+       <div class="div">
+         <a href="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+         </a>
+       
+        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+          </i> Login with Google+
+        </a>
+       </div>
+
+        <div class="line"></div>
+        
+      </div>
+      
+       <div class="line2"></div>
+      
+<div class="input-form">
+   <div class="input-form-btn">
+    <button id="showFormBtn" class="btn btn-danger signup-btn">Sign Up</button>
+   </div>
+    
+    <div id="signupForm" class="hidden">
+       <form action="#" id="form">
+         <div class="inputGroup">
+          <label for="name">Username:</label>
+            <input type="text" id="name" name="name" class="form-control"> <br>
+            <div class="error"></div>
+         </div>
+
+            
+           <div class="inputGroup">
+             <label for="email">Email:</label>
+            <input type="text" id="email" name="email" class="form-control" required> <br>
+             <div class="error"></div>
+           </div>
+            
+            <div class="inputGroup">
+              <label for="password">Password:</label>
+            <input type="fancyPassword" id="password" name="password" class="form-control">
+            <div class="error"></div>
+             <i id="togglePassword"></i>
+            </div>
+
+            <dt>Your Password Must:</dt>
+           <ul>
+            <li>Include an UPPER and lowercase letter</li>
+            <li>Include a number</li>
+            <li>Include one or more of these special characters: .@$!%*#?&><)(^-_</li>
+            <li>Be between 8 and 100 characters</li>
+           </ul>
+            
+            <button type="submit" class="btn btn-submit ">Submit</button>
+
+
+       
+
+       
+            </div>
+      <div class="form-link">
+             <span>By signing up, you agree to Blue Bird's <br> <a href="#" class="link signup-link">Privacy and Conditions</a></span>
+             </div>
+            
+</div>
+    </div>
+    </div>
+       </form>
+     </div>
+      
+  
+  
+
+</main>
+
+           <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><!--for scroll animation-->
+
+        <!--scroll animation-->
+<script>AOS.init();</script>
+
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>  <!--for type animation-->
+
+
+<!--Form click -->
+<script>
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+
+<!--JS Bootstrap link-->
+     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.8"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+       </body>

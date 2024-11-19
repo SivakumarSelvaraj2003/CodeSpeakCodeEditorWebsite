@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+    <!--Bootstrap Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+     <!--Favicon-->
+    <link rel="icon" type="image/png" href="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png">
+    <!--for box icons-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'><!--for box icons-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"><!--for scroll animation-->
+    
+<!--Code Mirror-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.css">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/anyword-hint.js"></script>
+
+<!--Theme-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/theme/material.css"> 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/postcss/8.4.5/postcss.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/acorn/8.4.1/acorn.min.js"></script>
+
+<!--CSS and JS Connection Links-->
+<link rel="stylesheet" href="editor.css">
+     <script type="module" src="editor.js"></script>
+
+
+
+    
+</head>
+<body>
+     <header>
+        <!--Nav Bar-->
+             <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
+                <h1 class="navbar-brand">CODE SPEAK</h1>
+              
+
+               <button class="navbar-toggler" type="button " data-bs-toggle="collapse" data-bs-target="#navnav"><span class="navbar-toggler-icon"></span></button> 
+
+             <div class="collapse navbar-collapse" id="navnav">
+                <ul class="navbar-nav ms-auto">
+                    <li  class="nav-item register-btn">
+                      <a class="nav-link"href="#">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Shortcuts</button>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTaskModal">Save</button>
+                        
+                      <button class="btn btn-danger" onclick="window.location.href='signup.html'">SignUp</button>
+
+                      <button class="btn btn-primary" onclick="window.location.href='login.html'">Log in</button>
+                    </a>
+                    
+                     </li>
+
+                </ul>
+            </div></div>
+        </nav>
+        </header>
+         <!-- fancy border -->
+<div class="fancy-border1">
+
+</div>
+
+<main>
+    <!--Code Editor-->
+  <section class="container2">
+   
+<div class="editor">
+
+<div class="left">
+
+<div>
+    <!--HTML Area-->
+      <label><i class='bx bxl-html5'></i>HTML   
+
+      <span id="html-error-icon" class="emoji" style="display: none;">🚫</span>
+     
+
+  </label>
+  <!--  <textarea name="html" id="html-code" spellcheck="false" onkeyup="run()"></textarea>  -->
+  <div id="html-code" class="code-editor"  onkeyup="run()"></div>
+ <div class="error-messages">
+      <div id="html-error-messages" class="error-message" style="display: none;"></div>
+    </div>
+</div>
+  <!--CSS Area-->
+<div>
+    
+  <label><i class='bx bxl-css3' ></i>CSS 
+    <span id="css-error-icon" class="emoji" style="display: none;">🚫</span>
+ 
+  </label>
+  <!--  <textarea name="css" id="css-code"  spellcheck="false" onkeyup="run()"></textarea>  -->
+     <div id="css-code" class="code-editor"  onkeyup="run()"></div>
+      <div class="error-messages">
+  <div id="css-error-messages" class="error-message" style="display: none;"></div>
+</div>
+</div>
+
+     
+  <!--JS Area-->
+
+<div>
+      <label><i class='bx bxl-javascript' ></i>JS  
+      <span id="js-error-icon" class="emoji" style="display: none;">🚫</span>
+
+  
+        </label>
+  </label>
+  
+ <!--  <textarea name="css" id="js-code"  spellcheck="false" onkeyup="run()"></textarea>  -->
+    <div id="js-code" class="code-editor"  onkeyup="run()"></div>
+
+   <div class="error-messages">
+  <div id="js-error-messages" class="error-message" style="display: none;"></div>
+ 
+</div>
+</div>
+</div>
+
+<!--Output Area-->
+<div class="right">
+  <label>
+    <i class='bx bx-play'></i>Output  <button type="button" class="btn btn-danger firstVolume" id="speak-errors">Errors <i class="fa fa-volume-up"></i></button> 
+   
+  </label>
+  <iframe id="output" class="outputs"></iframe>
+
+ 
+ 
+</div>
+
+
+
+</div>
+
+  </section>
+
+  <!--Save Button Modal-->
+
+ <section>
+
+  <div class="modal fade" id="addTaskModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Hold up! </h2>
+                           
+                            <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                       <div class="modal-content modal-para">  <h5 class="modal-para">You’ll have to Log In or Sign Up (for free!) to save your Code.
+Don’t worry! All your work will be saved to your account.</h5></div>
+                        <div class="modal-body">
+                            <form action="/action_page.php">
+      <div class="col col2">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>                       
+
+        <div class="div2">
+          <input type="email" class="input input1 form-control" name="username" placeholder="Email" required>
+        <input type="password" class="input input2 form-control" name="password" placeholder="Password" id="password" required>
+         <i class="fa fa-eye eye-icon" id="togglePassword"></i>
+        
+          <div class="form-link">
+              <a href="#" class="forgot-password">Forgot password?</a>
+             <!--   <button type="button" class="toggle-password-visibility">Show/Hide Password</button> -->
+            </div>
+        <input type="submit" class="input form-control" value="Login">
+        </div>
+      </div>
+     </div>
+       <div class="form-link link3">
+             <span>Already have an account? <a href="signup.html" class="link signup-link">Signup</a></span>
+            </div>
+    </div>
+  </form>
+                        </div>
+                      
+                    </div>
+                  </div>
+             </div>
+
+    </div>
+ </section>
+
+
+ 
+
+<!-- Shortcuts button Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    
+                  <div class="modal-dialog">
+                    <div class="modal-content modal-content2">
+                        <div class="modal-header">
+                            <h2 class="modal-title modal-title2">Editor Shortcuts</h2>
+                           
+                            <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                       <div class="modal-content modal-content3 modal-para">  <h5 class="modal-para1"><span class="shortcuts">Ctrl + A</span> &nbsp;&nbsp;  Select All</h5></div>
+                    
+                       <div class="modal-content  modal-content3 modal-para">  <h5 class="modal-para1"><span class="shortcuts">Ctrl + Space</span> &nbsp;&nbsp; Autocomplete</h5></div>
+                    
+                       <div class="modal-content modal-content3 modal-para">  <h5 class="modal-para1"><span class="shortcuts">Ctrl + D</span> &nbsp;&nbsp; Duplicate Line</h5></div>
+                    
+                       <div class="modal-content modal-content3 modal-para">  <h5 class="modal-para1"><span class="shortcuts">Ctrl + F</span> &nbsp;&nbsp; Find</h5></div>
+                    
+       
+    </div>
+  </form>
+                        </div>
+                      
+                    </div>
+                  </div>
+             </div>
+
+    </div>
+
+
+
+</main>
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><!--for scroll animation-->
+
+        
+<script>AOS.init();</script><!--scroll animation-->
+
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>  <!--for type animation-->
+
+<!--Bootstrap JS links-->
+     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.8"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 
+</body>
+</html>
