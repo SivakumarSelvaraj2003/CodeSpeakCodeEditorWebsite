@@ -128,29 +128,19 @@ togglePasswordIcon.addEventListener("click", function () {
 (() => {
   let timeout;
   const passwordField = document.querySelector("#password");
-
   passwordField.setAttribute("data-value", "");
-
   passwordField.addEventListener("input", function () {
     clearTimeout(timeout);
-
     const realPassword = this.getAttribute("data-value");
     const typedChar = this.value.slice(-1);
-
-    // If backspace, reduce real password length
     if (this.value.length < realPassword.length) {
       this.setAttribute("data-value", realPassword.slice(0, -1));
     }
-    // Otherwise, add the last character typed
     else {
       this.setAttribute("data-value", realPassword + typedChar);
     }
-
-    // Display masked password
     this.value =
       "•".repeat(this.getAttribute("data-value").length - 1) + typedChar;
-
-    // Mask the last character after a delay
     timeout = setTimeout(() => {
       this.value = "•".repeat(this.getAttribute("data-value").length);
     }, 500);
