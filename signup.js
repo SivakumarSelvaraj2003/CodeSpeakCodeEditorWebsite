@@ -48,75 +48,78 @@ togglePasswordIcon.addEventListener("click", function () {
             }
         });
 
-        function validateInputs() {
-            const usernameVal = userName.value.trim();
-            const emailVal = email.value.trim();
-            const passwordVal = password.value.trim();
-            let success = true;
+      function validateInputs() {
+        const usernameVal = userName.value.trim();
+        const emailVal = email.value.trim();
+        const passwordVal = password.value.trim();
+        let success = true;
 
-            // Validate username
-            if (usernameVal === "") {
-                setError(userName, "Name is required");
-                success = false;
-            } else {
-                setSuccess(userName);
-            }
+        console.log("Password value:", passwordVal); // Debugging
 
-            // Validate email
-            if (emailVal === "") {
-                setError(email, "Email is required");
-                success = false;
-            } else if (!validateEmail(emailVal)) {
-                setError(email, "Please enter a valid email");
-                success = false;
-            } else {
-                setSuccess(email);
-            }
-
-            // Validate password
-            if (passwordVal === "") {
-                setError(password, "Password is required");
-                success = false;
-            } else if (!validatePassword(passwordVal)) {
-              setError(
-                password,
-                "Password must include uppercase, lowercase, number, special character, and be 8-100 characters long."
-              );
-              success = false;
-            } else {
-              setSuccess(password);
-            }
-
-            return success;
+        // Validate username
+        if (usernameVal === "") {
+          setError(userName, "Name is required");
+          success = false;
+        } else {
+          setSuccess(userName);
         }
 
-        function setError(element, message) {
-            const inputGroup = element.parentElement;
-            const errorElement = inputGroup.querySelector(".error");
-            errorElement.innerText = message;
-            inputGroup.classList.add("error"); // Correct class addition
-            inputGroup.classList.remove("success");
+        // Validate email
+        if (emailVal === "") {
+          setError(email, "Email is required");
+          success = false;
+        } else if (!validateEmail(emailVal)) {
+          setError(email, "Please enter a valid email");
+          success = false;
+        } else {
+          setSuccess(email);
         }
 
-        function setSuccess(element) {
-            const inputGroup = element.parentElement;
-            const errorElement = inputGroup.querySelector(".error");
-            errorElement.innerText = "";
-            inputGroup.classList.add("success"); // Correct class addition
-            inputGroup.classList.remove("error");
+        // Validate password
+        if (passwordVal === "") {
+          setError(password, "Password is required");
+          success = false;
+        } else if (!validatePassword(passwordVal)) {
+          setError(
+            password,
+            "Password must include uppercase, lowercase, number, special character, and be 8-100 characters long."
+          );
+          success = false;
+        } else {
+          setSuccess(password);
         }
 
-     const validateEmail = (email) => {
-       return String(email)
-         .toLowerCase()
-         .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-     };
+        return success;
+      }
 
-     const validatePassword = (password) => {
-       return String(password).match(
-         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*><)(^-_])[A-Za-z\d@$!%*#?&><)(^-_]{8,100}$/
-       );
-     };
+      function setError(element, message) {
+        const inputGroup = element.parentElement;
+        const errorElement = inputGroup.querySelector(".error");
+        errorElement.innerText = message;
+        inputGroup.classList.add("error");
+        inputGroup.classList.remove("success");
+      }
+
+      function setSuccess(element) {
+        const inputGroup = element.parentElement;
+        const errorElement = inputGroup.querySelector(".error");
+        errorElement.innerText = "";
+        inputGroup.classList.add("success");
+        inputGroup.classList.remove("error");
+      }
+
+      const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+      };
+
+      const validatePassword = (password) => {
+        return String(password).match(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()><\^_\-])[A-Za-z\d!@#$%^&*()><\^_\-]{8,100}$/
+        );
+      };
+
     
 
         //fancy password
