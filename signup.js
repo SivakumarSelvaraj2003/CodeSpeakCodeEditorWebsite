@@ -48,127 +48,114 @@ togglePasswordIcon.addEventListener("click", function () {
             }
         });
 
-      function validateInputs() {
-        const usernameVal = userName.value.trim();
-        const emailVal = email.value.trim();
-        const passwordVal = password.value.trim();
-        let success = true;
+        function validateInputs() {
+            const usernameVal = userName.value.trim();
+            const emailVal = email.value.trim();
+            const passwordVal = password.value.trim();
+            let success = true;
 
-        console.log("Password value:", passwordVal); // Debugging
+            // Validate username
+            if (usernameVal === "") {
+                setError(userName, "Name is required");
+                success = false;
+            } else {
+                setSuccess(userName);
+            }
 
-        // Validate username
-        if (usernameVal === "") {
-          setError(userName, "Name is required");
-          success = false;
-        } else {
-          setSuccess(userName);
+            // Validate email
+            if (emailVal === "") {
+                setError(email, "Email is required");
+                success = false;
+            } else if (!validateEmail(emailVal)) {
+                setError(email, "Please enter a valid email");
+                success = false;
+            } else {
+                setSuccess(email);
+            }
+
+            // Validate password
+            if (passwordVal === "") {
+                setError(password, "Password is required");
+                success = false;
+            } else if (!validatePassword(passwordVal)) {
+              setError(
+                password,
+                "Password must include uppercase, lowercase, number, special character, and be 8-100 characters long."
+              );
+              success = false;
+            } else {
+              setSuccess(password);
+            }
+
+            return success;
         }
 
-        // Validate email
-        if (emailVal === "") {
-          setError(email, "Email is required");
-          success = false;
-        } else if (!validateEmail(emailVal)) {
-          setError(email, "Please enter a valid email");
-          success = false;
-        } else {
-          setSuccess(email);
+        function setError(element, message) {
+            const inputGroup = element.parentElement;
+            const errorElement = inputGroup.querySelector(".error");
+            errorElement.innerText = message;
+            inputGroup.classList.add("error"); // Correct class addition
+            inputGroup.classList.remove("success");
         }
 
-        // Validate password
-        if (passwordVal === "") {
-          setError(password, "Password is required");
-          success = false;
-        } else if (!validatePassword(passwordVal)) {
-          setError(
-            password,
-            "Password must include uppercase, lowercase, number, special character, and be 8-100 characters long."
-          );
-          success = false;
-        } else {
-          setSuccess(password);
+        function setSuccess(element) {
+            const inputGroup = element.parentElement;
+            const errorElement = inputGroup.querySelector(".error");
+            errorElement.innerText = "";
+            inputGroup.classList.add("success"); // Correct class addition
+            inputGroup.classList.remove("error");
         }
 
-        return success;
-      }
-
-      function setError(element, message) {
-        const inputGroup = element.parentElement;
-        const errorElement = inputGroup.querySelector(".error");
-        errorElement.innerText = message;
-        inputGroup.classList.add("error");
-        inputGroup.classList.remove("success");
-      }
-
-      function setSuccess(element) {
-        const inputGroup = element.parentElement;
-        const errorElement = inputGroup.querySelector(".error");
-        errorElement.innerText = "";
-        inputGroup.classList.add("success");
-        inputGroup.classList.remove("error");
-      }
-
-      const validateEmail = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-      };
-
-      const validatePassword = (password) => {
-        return String(password).match(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()><\^_\-])[A-Za-z\d!@#$%^&*()><\^_\-]{8,100}$/
-        );
-      };
+        const validateEmail = (email) => {
+            return String(email)
+                .toLowerCase()
+                .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+        }; 
+       const validatePassword = (password) => {
+         const realPassword = document
+           .querySelector("#password")
+           .getAttribute("data-value");
+         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d@$!%*#?&><)(^-_]{8,100}$/.test(
+           realPassword
+         );
+       };
 
     
 
         //fancy password
 
 
-      (() => {
-        let timeout;
-        const fields = document.querySelectorAll("[id=password]"); // Selecting password fields
-        Array.from(fields).forEach((field) => {
-          field.setAttribute("data-value", "");
+(() => {
+  let timeout;
+  const passwordField = document.querySelector("#password");
 
-          field.addEventListener("input", function () {
-            if (timeout) clearTimeout(timeout);
+  passwordField.setAttribute("data-value", "");
 
-            // Stop processing if input is empty
-            if (!this.value.length) {
-              this.setAttribute("data-value", "");
-              return;
-            }
+  passwordField.addEventListener("input", function () {
+    clearTimeout(timeout);
 
-            // Retrieve the last character typed
-            const typedChar = this.value.split("").pop();
+    const realPassword = this.getAttribute("data-value");
+    const typedChar = this.value.slice(-1);
 
-            // Update the data-value attribute to hold the full password
-            this.setAttribute(
-              "data-value",
-              this.getAttribute("data-value") + typedChar
-            );
+    // If backspace, reduce real password length
+    if (this.value.length < realPassword.length) {
+      this.setAttribute("data-value", realPassword.slice(0, -1));
+    }
+    // Otherwise, add the last character typed
+    else {
+      this.setAttribute("data-value", realPassword + typedChar);
+    }
 
-            // Show masked input with the last character visible
-            this.value =
-              "•".repeat(this.getAttribute("data-value").length - 1) +
-              typedChar;
+    // Display masked password
+    this.value =
+      "•".repeat(this.getAttribute("data-value").length - 1) + typedChar;
 
-            // After a delay, mask the last character too
-            timeout = setTimeout(() => {
-              this.value = "•".repeat(this.getAttribute("data-value").length);
-            }, 500);
-          });
-
-          // Ensure backspace works
-          field.addEventListener("keydown", function (e) {
-            if (e.key === "Backspace") {
-              const currentValue = this.getAttribute("data-value");
-              this.setAttribute("data-value", currentValue.slice(0, -1));
-            }
-          });
-        });
-      })();
+    // Mask the last character after a delay
+    timeout = setTimeout(() => {
+      this.value = "•".repeat(this.getAttribute("data-value").length);
+    }, 500);
+  });
+})();
 
    
 
