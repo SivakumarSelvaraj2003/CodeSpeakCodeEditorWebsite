@@ -125,22 +125,51 @@ togglePasswordIcon.addEventListener("click", function () {
         //fancy password
 
 
-          (()=>{
-  var to;
-  var fields = document.querySelectorAll('[type=fancyPassword]');
-  Array.from(fields).forEach(ele=>{
-    ele.setAttribute("data-value", "");
-    ele.addEventListener('keyup', function(){
-        if(to) clearTimeout(to);
-        if(!this.value.length) return;
-        var typed = this.value.split('').pop();
-        this.setAttribute("data-value", this.getAttribute("data-value")+typed);
-        this.value = "•".repeat(this.value.length-1)+typed;
-        to = setTimeout(()=>this.value = "•".repeat(this.value.length),500);
-    });
-  });
-})();
-       
+      (() => {
+        let timeout;
+        const fields = document.querySelectorAll("[id=password]"); // Selecting password fields
+        Array.from(fields).forEach((field) => {
+          field.setAttribute("data-value", "");
+
+          field.addEventListener("input", function () {
+            if (timeout) clearTimeout(timeout);
+
+            // Stop processing if input is empty
+            if (!this.value.length) {
+              this.setAttribute("data-value", "");
+              return;
+            }
+
+            // Retrieve the last character typed
+            const typedChar = this.value.split("").pop();
+
+            // Update the data-value attribute to hold the full password
+            this.setAttribute(
+              "data-value",
+              this.getAttribute("data-value") + typedChar
+            );
+
+            // Show masked input with the last character visible
+            this.value =
+              "•".repeat(this.getAttribute("data-value").length - 1) +
+              typedChar;
+
+            // After a delay, mask the last character too
+            timeout = setTimeout(() => {
+              this.value = "•".repeat(this.getAttribute("data-value").length);
+            }, 500);
+          });
+
+          // Ensure backspace works
+          field.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace") {
+              const currentValue = this.getAttribute("data-value");
+              this.setAttribute("data-value", currentValue.slice(0, -1));
+            }
+          });
+        });
+      })();
+
    
 
 
