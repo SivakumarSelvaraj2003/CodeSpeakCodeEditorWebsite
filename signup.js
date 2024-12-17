@@ -106,16 +106,17 @@ togglePasswordIcon.addEventListener("click", function () {
             inputGroup.classList.remove("error");
         }
 
-        const validateEmail = (email) => {
-            return String(email)
-                .toLowerCase()
-                .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-        }; 
-        const validatePassword = (password) => {
-            return String(password).match(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d@$!%*#?&><)(^-_]{8,100}$/
-            );
-        }; 
+     const validateEmail = (email) => {
+       return String(email)
+         .toLowerCase()
+         .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+     };
+
+     const validatePassword = (password) => {
+       return String(password).match(
+         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*><)(^-_])[A-Za-z\d@$!%*#?&><)(^-_]{8,100}$/
+       );
+     };
     
 
         //fancy password
