@@ -63,56 +63,59 @@ document.addEventListener("DOMContentLoaded", function () {
 })();
 
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        const emailInput = document.querySelector("input[name='username']"); // Use 'username' for email input
-        const passwordInput = document.querySelector("input[name='password']");
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const emailInput = document.querySelector("input[name='username']");
+  const passwordInput = document.querySelector("input[name='password']");
 
-        form.addEventListener("submit", function (event) {
-          let valid = true;
+  form.addEventListener("submit", function (event) {
+    let valid = true;
 
-          // Clear previous error messages
-          const errorMessages = document.querySelectorAll(".error-message");
-          errorMessages.forEach((msg) => {
-            msg.innerText = ""; // Clear any previous messages
-          });
+    // Clear previous error messages
+    const errorMessages = document.querySelectorAll(".error-message");
+    errorMessages.forEach((msg) => {
+      msg.innerText = "";
+    });
 
-          // Validate email format
-          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailInput.value) {
-            valid = false;
-            displayErrorMessage(emailInput, "Email cannot be empty.");
-          } else if (!emailPattern.test(emailInput.value)) {
-            valid = false;
-            displayErrorMessage(
-              emailInput,
-              "Please enter a valid email address."
-            );
-          }
+    // Validate email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
-          // Check if the email and password match the predefined credentials
-          const predefinedEmail = "siva4142@example.com"; // Replace with your predefined email
-          const predefinedPassword = "12345678";
+    if (!email) {
+      valid = false;
+      displayErrorMessage(emailInput, "Email cannot be empty.");
+    } else if (!emailPattern.test(email)) {
+      valid = false;
+      displayErrorMessage(emailInput, "Please enter a valid email address.");
+    }
 
-          if (
-            valid &&
-            (emailInput.value !== predefinedEmail ||
-              passwordInput.value !== predefinedPassword)
-          ) {
-            valid = false;
-            displayErrorMessage(emailInput, "Invalid email or password.");
-          }
+    // Check predefined credentials
+    const predefinedEmail = "siva4142@example.com";
+    const predefinedPassword = "12345678";
 
-          // If invalid, prevent form submission
-          if (!valid) {
-            event.preventDefault(); // Prevent form submission
-          }
-        });
+    if (
+      valid &&
+      (email !== predefinedEmail || password !== predefinedPassword)
+    ) {
+      valid = false;
+      displayErrorMessage(emailInput, "Invalid email or password.");
+    }
 
-        function displayErrorMessage(inputElement, message) {
-          // Find the error message div following the input element
-          const errorDiv = inputElement.nextElementSibling;
-          errorDiv.className = "error-message text-danger"; // Ensure it has the correct class for styling
-          errorDiv.innerText = message; // Set the error message text
-        }
-      });
+    // Prevent submission if invalid
+    if (!valid) {
+      event.preventDefault();
+    } else {
+      // If valid, show an alert box
+      event.preventDefault(); // Prevent default form submission for demonstration
+      alert("Login successful! Welcome, " + predefinedEmail);
+      window.location.href = "index.html";
+    }
+  });
+
+  function displayErrorMessage(inputElement, message) {
+    const errorDiv = inputElement.nextElementSibling;
+    errorDiv.className = "error-message text-danger";
+    errorDiv.innerText = message;
+  }
+});
