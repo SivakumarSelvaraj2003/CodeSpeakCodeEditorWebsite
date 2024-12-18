@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 })();
 
-
+//form validation
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
   const emailInput = document.querySelector("input[name='username']");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     let valid = true;
 
-    // Clear previous error messages
+
     const errorMessages = document.querySelectorAll(".error-message");
     errorMessages.forEach((msg) => {
       msg.innerText = "";
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
       displayErrorMessage(emailInput, "Please enter a valid email address.");
     }
 
-    // Check predefined credentials
+
     const predefinedEmail = "siva4142@example.com";
     const predefinedPassword = "12345678";
 
@@ -102,12 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
       displayErrorMessage(emailInput, "Invalid email or password.");
     }
 
-    // Prevent submission if invalid
+
     if (!valid) {
       event.preventDefault();
     } else {
-      // If valid, show an alert box
-      event.preventDefault(); // Prevent default form submission for demonstration
+    
+      event.preventDefault(); 
       alert("Login successful! Welcome, " + predefinedEmail);
       window.location.href = "index.html";
     }
