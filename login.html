@@ -34,11 +34,14 @@
       <!--Nav Bar-->
              <nav class="navbar navbar-expand-lg">
             <div class="container">
-              <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
+              <div class="heading">
+                <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
                 <h1 class="navbar-brand">CODE SPEAK</h1>
-                <img src="images/sun-256.png" alt="sun" class="light-mode"  id="icon">
+              </div>
+                
 
              <div class="navba-list" id="navnav">
+              <img src="images/sun-256.png" alt="sun" class="light-mode"  id="icon">
                 <ul class="navbar-nav ms-auto">
                     <li  class="nav-item register-btn">
                       <a class="nav-link"href="#">
@@ -61,9 +64,9 @@
 
 <main>
 <div class="container2">
-  <form action="index.html" method="get">
+  <form id="loginForm">  <!-- Removed action and method -->
     <div class="row">
-      <h2 class="login-heading">Log In</h2>
+      <h2 class="login-heading ">Log In</h2>
       <div class="login-form">
         <div class="col col1 btn-line">
           <div class="div">
@@ -76,29 +79,31 @@
           </div>
           <div class="line"></div>
         </div>
-        <div class="line2"></div>
+        <div class="separator">
+        <span>or</span>
+    </div>
         <div class="col col2">
-          <div class="hide-md-lg">
-            <p>Or sign in manually:</p>
-          </div>
           <div class="div2">
-            <input type="text" class="input input1 form-control" name="username" placeholder="Email" required>
-            <div class="error-message"></div>
-            <input type="password" class="input input2 form-control" name="password" placeholder="Password" id="password" required>
-            <div class="error-message"></div>
+            <input type="email" id="login-email" class="input input1 form-control" placeholder="Email" required>
+            <div class="error-message" id="email-error"></div>
+
+            <input type="password" id="login-password" class="input input2 form-control" placeholder="Password" required>
+            <div class="error-message" id="password-error"></div>
+
             <div class="form-link">
               <a href="#" class="forgot-password">Forgot password?</a>
             </div>
-            <input type="submit" class="input" value="Login">
+            <input type="submit" class="input btn btn-primary" value="Login">
           </div>
         </div>
       </div>
       <div class="form-link">
-        <span>Already have an account? <a href="signup.html" class="link signup-link">Signup</a></span>
+        <span>Don't have an account? <a href="signup.html" class="link signup-link">Signup</a></span>
       </div>
     </div>
   </form>
 </div>
+
 
 
 </main>
@@ -117,11 +122,11 @@
           <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo">
         </div>
           <div class="footer-title">
-            <h1>CODE EDITOR</h1>
+            <h1>CODE SPEAK</h1>
           </div>
       </div>
    <div  class="footer-copyright">
-       <p>&copy; Copyright <br> @2024 bluebirdcodeeditor.com</p>
+       <p>&copy; Copyright <br> @2025 codespeakcodeeditor.com</p>
        
    </div>
 

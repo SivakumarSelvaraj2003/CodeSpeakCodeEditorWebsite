@@ -12,40 +12,45 @@
     <link rel="icon" type="image/png" href="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png">
      <!--for scroll animation-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <!--JS connection link-->
     <script type="module" src="project-intro.js"></script>
 </head>
 <body>
-        <header>
-          <!--Navbar-->
-             <nav class="navbar navbar-expand-lg">
-            <div class="container">
-              <img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
-                <h1 class="navbar-brand">CODE SPEAK</h1>
-                <img src="images/sun-256.png" alt="sun" class="light-mode"  id="icon">
+       <header>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="heading-container">
+<div class="heading"><img src="images/WhatsApp_Image_2024-10-14_at_9.50.23_AM__1_-removebg-preview.png" alt="logo" class="icon-image">
+      <h1 class="navbar-brand">CODE SPEAK</h1></div>
+       <img src="images/sun-256.png" alt="sun" class="light-mode" id="icon">
+      </div>
+      
 
-                <button class="navbar-toggler" type="button " data-bs-toggle="collapse" data-bs-target="#navnav"><span class="navbar-toggler-icon"></span></button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navnav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navnav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link links" id="myId" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link links" href="#aboutus">Contact</a></li>
 
-             <div class="collapse navbar-collapse" id="navnav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item "><a class="nav-link " id="myId" href="#" >Home</a></li>
-                    <li  class="nav-item"><a class="nav-link" href="#aboutus">Contact</a></li>
+          <!-- Login / Signup Buttons -->
+          <li class="nav-item register-btn" id="auth-buttons">
+            <a class="nav-link" href="#">
+              <button class="btn btn-danger" onclick="window.location.href='signup.html'">SignUp</button>
+              <button class="btn btn-primary" onclick="window.location.href='login.html'">Log in</button>
+            </a>
+          </li>
 
 
-                    <li  class="nav-item register-btn">
-                      <a class="nav-link"href="#">
-                      <button class="btn btn-danger" onclick="window.location.href='signup.html'">SignUp</button>
-
-                      <button class="btn btn-primary" onclick="window.location.href='login.html'">Log in</button>
-                    </a>
-                    
-                     </li>
-                   
-
-                </ul>
-            </div></div>
-        </nav>
-        </header>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 
          <!-- fancy border -->
 <div class="fancy-border1">
@@ -341,7 +346,7 @@
           </div>
       </div>
    <div  class="footer-copyright">
-       <p>&copy; Copyright <br> @2024 bluebirdcodeeditor.com</p>
+       <p>&copy; Copyright <br> @2025 codespeakcodeeditor.com</p>
        
    </div>
 

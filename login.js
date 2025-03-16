@@ -10,112 +10,193 @@ icon.onclick = function () {
     icon.src = "images/sun-256.png";
   }
 };
+ document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
+  loginForm.addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-  const passwordInput = document.querySelector("#password");
-  const togglePasswordIcon = document.querySelector("#togglePassword");
+    const email = document.querySelector("#login-email").value.trim();
+    const password = document.querySelector("#login-password").value.trim();
+    const emailError = document.querySelector("#email-error");
+    const passwordError = document.querySelector("#password-error");
 
-  togglePasswordIcon.addEventListener("click", function () {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      togglePasswordIcon.classList.remove("fa-eye");
-      togglePasswordIcon.classList.add("fa-eye-slash");
-    } else {
-      passwordInput.type = "password";
-      togglePasswordIcon.classList.remove("fa-eye-slash");
-      togglePasswordIcon.classList.add("fa-eye");
+    // Reset previous errors
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    if (!email || !password) {
+      emailError.textContent = "Email is required.";
+      passwordError.textContent = "Password is required.";
+      return;
     }
-  });
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const email = document.querySelector('input[name="username"]').value;
-    const password = document.querySelector('input[name="password"]').value;
+      const data = await response.json();
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+      if (!response.ok) {
+        // Display error message
+        emailError.textContent = "Invalid email or password.";
+        passwordError.textContent = "Please check your credentials.";
+        return;
+      }
 
-    alert(
-      "Login form submitted! (This is a demo and does not actually submit)"
-    );
+      // Successful login
+      alert("Login successful!");
+      localStorage.setItem("token", data.token);
+      window.location.href = "editor.html"; // Redirect after login
+    } catch (error) {
+      emailError.textContent = "Error logging in. Please try again.";
+    }
   });
 });
 
-//fancy password
-
-(() => {
-  var to;
-  var fields = document.querySelectorAll("[type=fancyPassword]");
-  Array.from(fields).forEach((ele) => {
-    ele.setAttribute("data-value", "");
-    ele.addEventListener("keyup", function () {
-      if (to) clearTimeout(to);
-      if (!this.value.length) return;
-      var typed = this.value.split("").pop();
-      this.setAttribute("data-value", this.getAttribute("data-value") + typed);
-      this.value = "•".repeat(this.value.length - 1) + typed;
-      to = setTimeout(() => (this.value = "•".repeat(this.value.length)), 500);
-    });
-  });
-})();
-
-//form validation
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const emailInput = document.querySelector("input[name='username']");
-  const passwordInput = document.querySelector("input[name='password']");
+  const userDropdown = document.getElementById("user-dropdown"); // User icon
+  const authButtons = document.getElementById("auth-buttons"); // Login/Signup buttons
+  const usernameDisplay = document.getElementById("username-display"); // Username display
+  const logoutBtn = document.getElementById("logout-btn"); // Logout button
 
-  form.addEventListener("submit", function (event) {
-    let valid = true;
+  function updateUI() {
+    const username = localStorage.getItem("username");
 
-
-    const errorMessages = document.querySelectorAll(".error-message");
-    errorMessages.forEach((msg) => {
-      msg.innerText = "";
-    });
-
-    // Validate email format
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    if (!email) {
-      valid = false;
-      displayErrorMessage(emailInput, "Email cannot be empty.");
-    } else if (!emailPattern.test(email)) {
-      valid = false;
-      displayErrorMessage(emailInput, "Please enter a valid email address.");
-    }
-
-
-    const predefinedEmail = "siva4142@example.com";
-    const predefinedPassword = "12345678";
-
-    if (
-      valid &&
-      (email !== predefinedEmail || password !== predefinedPassword)
-    ) {
-      valid = false;
-      displayErrorMessage(emailInput, "Invalid email or password.");
-    }
-
-
-    if (!valid) {
-      event.preventDefault();
+    if (username) {
+      usernameDisplay.textContent = username; // Show username
+      userDropdown.style.display = "block"; // Show user icon
+      authButtons.style.display = "none"; // Hide login/signup buttons
     } else {
-    
-      event.preventDefault(); 
-      alert("Login successful! Welcome, " + predefinedEmail);
-      window.location.href = "index.html";
+      userDropdown.style.display = "none"; // Hide user icon
+      authButtons.style.display = "block"; // Show login/signup buttons
     }
-  });
+  }
 
-  function displayErrorMessage(inputElement, message) {
-    const errorDiv = inputElement.nextElementSibling;
-    errorDiv.className = "error-message text-danger";
-    errorDiv.innerText = message;
+  updateUI(); // Call function on page load
+
+  // Logout Functionality
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      updateUI(); // Update UI after logout
+      alert("Logged out successfully!");
+      window.location.href = "index.html"; // Redirect to homepage
+    });
   }
 });
+ 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm"); // Login form
+  const userDropdown = document.getElementById("user-dropdown"); // User icon dropdown
+  const authButtons = document.getElementById("auth-buttons"); // Login/Signup buttons
+  const usernameDisplay = document.getElementById("username-display"); // Username display
+  const logoutBtn = document.getElementById("logout-btn"); // Logout button
+
+  async function loginUser(email, password) {
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Invalid email or password.");
+      }
+
+      // ✅ Store token & username in localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.username); // Store username
+      alert("Login successful!");
+
+      // Redirect to editor or home page
+      window.location.href = "index.html";
+    } catch (error) {
+      showError(error.message);
+    }
+  }
+
+  function showError(message) {
+    const errorDiv = document.getElementById("login-error");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block"; // Show error message
+  }
+
+  // Handle login form submission
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const email = document.querySelector("#login-email").value.trim();
+    const password = document.querySelector("#login-password").value.trim();
+    const errorDiv = document.getElementById("login-error");
+
+    // Reset previous errors
+    errorDiv.textContent = "";
+    errorDiv.style.display = "none";
+
+    if (!email || !password) {
+      showError("Email and password are required.");
+      return;
+    }
+
+    loginUser(email, password);
+  });
+
+  function updateUI() {
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+
+    if (token && username) {
+      usernameDisplay.textContent = username; // Set username text
+      userDropdown.style.display = "block"; // Show user icon
+      authButtons.style.display = "none"; // Hide login/signup buttons
+    } else {
+      userDropdown.style.display = "none"; // Hide user icon
+      authButtons.style.display = "block"; // Show login/signup buttons
+    }
+  }
+
+  async function fetchUserProfile() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const response = await fetch("http://localhost:5000/user-profile", {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        localStorage.setItem("username", userData.username); // Ensure username is stored
+        updateUI(); // Update UI after fetching user data
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  }
+
+  updateUI(); // Call function on page load
+  fetchUserProfile(); // Fetch user data if token is present
+
+  // Logout functionality
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    updateUI(); // Update UI after logout
+    alert("Logged out successfully!");
+    window.location.href = "index.html"; // Redirect to homepage
+  });
+});
+
+
+
+

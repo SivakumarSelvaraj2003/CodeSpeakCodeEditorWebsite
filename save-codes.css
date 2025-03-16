@@ -1,0 +1,341 @@
+:root {
+  --primary-color: #231651;
+  --secondary-color: #d6fff6;
+}
+
+.dark-theme {
+  --primary-color: #d6fff6;
+  --secondary-color: #231651;
+}
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Header with Logo Animation */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  width: 100%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+.code-heading{
+  color: lime;
+}
+
+/* Icons */
+.bxl-html5 {
+  color: orangered;
+  font-size: 1.5rem;
+  margin: 0px;
+}
+
+.bxl-css3 {
+  color: blue;
+  font-size: 1.5rem;
+}
+
+.bxl-javascript {
+  color: yellow;
+  font-size: 1.5rem;
+}
+/* Logo Animation */
+.icon-image {
+  height: 50px;
+  width: auto;
+  margin-right: 15px;
+  animation: bounceIn 1s ease-in-out;
+}
+
+/* Heading Animation */
+h1 {
+  color: var(--secondary-color);
+  font-size: 2rem;
+  text-align: center;
+  animation: slideIn 1s ease-in-out;
+}
+.fancy-border1 {
+  width: 100%;
+  border-top: 4px solid;
+  text-align: center;
+  border-image: linear-gradient(
+      to right,
+      orangered 35%,
+      rgb(61, 106, 255) 35%,
+      rgb(61, 106, 255) 65%,
+      yellow 50%,
+      yellow 100%
+    )
+    5;
+}
+.fancy-border2 {
+  margin-top: 30px;
+  width: 100%;
+  border-top: 4px solid;
+  text-align: center;
+  border-image: linear-gradient(
+      to right,
+      orangered 35%,
+      rgb(61, 106, 255) 35%,
+      rgb(61, 106, 255) 65%,
+      yellow 50%,
+      yellow 100%
+    )
+    5;
+}
+
+/* Saved Code Container */
+#codeContainer {
+  width: 80%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+/* Saved Code Block Animation */
+.saved-code-block {
+  border: 1px solid var(--secondary-color);
+  padding: 20px;
+  margin: 15px 0;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+/* Hover effect on Saved Code Block */
+.saved-code-block:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px var(--secondary-color);
+}
+
+/* Code Section Styling */
+.saved-code-block h4 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+pre {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Delete Button with Hover Animation */
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trash Icon inside the Button */
+.delete-btn i {
+  margin-right: 8px;
+}
+
+/* Delete Button Hover Effect */
+.delete-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Button Click Animation */
+.delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 30px 0;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Footer Logo */
+.footer-img {
+    width: 30px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Footer Title */
+.footer-title h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-title h1:hover {
+    color: #f39c12;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+    margin-top: 15px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.footer-copyright:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+@media (min-width: 480px) {
+ 
+.footer-logo img{
+  width: 70px;
+  height: 70px;
+}
+.footer-title{
+  font-size: 1rem;
+}
+br{
+  display: none;
+}
+.footer-copyright{
+  font-size: 1.2rem;
+}
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-img {
+        width: 50px;
+    }
+
+    .footer-title h1 {
+        font-size: 20px;
+    }
+
+    .footer-copyright {
+        font-size: 14px;
+    }
+}
+ 
+/* media query for laptop view */
+@media (min-width: 992px) {
+
+  .footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #codeContainer {
+    width: 90%;
+  }
+
+  .saved-code-block {
+    padding: 15px;
+  }
+
+  .delete-btn {
+    width: 100%;
+  }
+
+  .icon-image {
+    height: 40px;
+  }
+}
